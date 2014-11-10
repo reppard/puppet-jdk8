@@ -5,30 +5,30 @@
 # Author Name <reppardwalker@gmail.com>
 
 class jdk8(
-  $version     = '8u25',
-  $fullVersion = '8u25-b17',
-  $arch        = 'x64',
-  $extension   = 'rpm',
-  $baseUrl     = 'http://download.oracle.com/otn-pub/java/jdk/',
-){
+  $version     = $jdk8::params::version,
+  $full_version = $jdk8::params::full_version,
+  $arch        = $jdk8::params::arch,
+  $extension   = $jdk8::params::extension,
+  $base_url     = $jdk8::params::base_url,
+) inherits jdk8::params{
 
-  $fileName     = "jdk-${version}-linux-${arch}.${extension}"
-  $fileUrl      = "${baseUrl}/${fullVersion}/${fileName}"
-  $cookieString = 'oraclelicense=accept-securebackup-cookie'
+  $file_name     = "jdk-${version}-linux-${arch}.${extension}"
+  $file_url      = "${base_url}/${full_version}/${file_name}"
+  $cookie_string = 'oraclelicense=accept-securebackup-cookie'
 
   exec { 'curlRPM':
-    command => "curl -L -C - -b ${cookieString} -O ${fileUrl}",
+    command => "curl -L -C - -b ${cookie_string} -O ${file_url}",
     cwd     => '/tmp',
-    creates => "/tmp/${fileName}",
+    creates => "/tmp/${file_name}",
     path    => ['/usr/bin', '/usr/sbin'],
   }
 
   package {
-    $fileName:
+    $file_name:
       ensure          => installed,
       require         => Exec['curlRPM'],
       provider        => rpm,
-      source          => "/tmp/${fileName}",
+      source          => "/tmp/${file_name}",
       install_options => ['-ivh'],
   }
 }
