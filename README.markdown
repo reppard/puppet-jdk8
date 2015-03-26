@@ -6,6 +6,5 @@ This is the jdk8 module.
 Usage
 -------
 ```shell
-include jdk8 
-
+  include jdk8
 ```
