@@ -25,7 +25,7 @@ class jdk8(
 
   package {
     $file_name:
-      ensure          => installed,
+      ensure          => $version,
       require         => Exec['curlRPM'],
       provider        => rpm,
       source          => "/tmp/${file_name}",
