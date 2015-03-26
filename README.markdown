@@ -3,14 +3,9 @@ jdk8
 
 This is the jdk8 module.
 
-License
+Usage
 -------
+```shell
+include jdk8 
 
-
-Contact
--------
-
-
-Support
--------
-
+```
