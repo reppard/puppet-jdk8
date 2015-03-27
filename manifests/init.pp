@@ -25,10 +25,10 @@ class jdk8(
 
   package {
     $file_name:
-      ensure          => $version,
+      ensure          => installed,
       require         => Exec['curlRPM'],
       provider        => rpm,
       source          => "/tmp/${file_name}",
-      install_options => ['-ivh'],
+      install_options => ['-Uvh'],
   }
 }

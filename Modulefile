@@ -1,5 +1,5 @@
 name    'reppard-jdk8'
-version '0.0.3'
+version '0.0.4'
 source  'https://github.com/reppard/puppet-jdk8'
 author 'reppard'
 license 'Apache License, Version 2.0'
